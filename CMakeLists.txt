@@ -27,10 +27,11 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_SOURCE_DIR}/cmake
   )
 
-include_directories(
+set(cudpp_INCLUDE_DIRS
   ${CMAKE_SOURCE_DIR}/common/inc
   ${CMAKE_SOURCE_DIR}/cudpp/include
   )
+include_directories(${cudpp_INCLUDE_DIRS})
 
 add_subdirectory(common)
 add_subdirectory(cudpp)
@@ -45,3 +46,16 @@ if (BUILD_APPLICATIONS)
   add_subdirectory(apps/simpleCUDPP)
   add_subdirectory(apps/satGL)
 endif (BUILD_APPLICATIONS)
+
+# Make files that store configuration to help dependent CMake files use
+# these libraries.
+export(
+  TARGETS cutil cudpp
+  FILE ${LIBRARY_OUTPUT_PATH}/cudpp-targets.cmake
+  )
+
+configure_file(
+  ${CMAKE_SOURCE_DIR}/cudpp-config.cmake.in
+  ${LIBRARY_OUTPUT_PATH}/cudpp-config.cmake
+  @ONLY
+  )
