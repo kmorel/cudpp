@@ -1,5 +1,9 @@
 project(cudpp)
 
+set(cudpp_VERSION_MAJOR 1)
+set(cudpp_VERSION_MINOR 1)
+set(cudpp_VERSION_PATCH 1)
+
 cmake_minimum_required(VERSION 2.8)
 
 find_package(CUDA REQUIRED)
@@ -70,4 +74,13 @@ configure_file(
 install(FILES ${LIBRARY_OUTPUT_PATH}/cudpp-config.cmake.install
   DESTINATION lib
   RENAME cudpp-config.cmake
+  )
+
+configure_file(
+  ${CMAKE_SOURCE_DIR}/cudpp-config-version.cmake.in
+  ${LIBRARY_OUTPUT_PATH}/cudpp-config-version.cmake
+  @ONLY
+  )
+install(FILES ${LIBRARY_OUTPUT_PATH}/cudpp-config-version.cmake
+  DESTINATION lib
   )
