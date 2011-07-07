@@ -27,8 +27,25 @@ set(CUFILES
   src/app/rand_app.cu 
   )
 
+set(HFILES
+  include/cudpp.h
+  )
+
 cuda_add_library(cudpp ${CCFILES} ${CUFILES})
 
 target_link_libraries(cudpp
   cutil
+  )
+
+install(FILES ${HFILES}
+  DESTINATION include
+  )
+
+install(TARGETS cudpp
+  DESTINATION lib
+  EXPORT cudpp-targets
+  )
+
+install(EXPORT cudpp-targets
+  DESTINATION lib
   )

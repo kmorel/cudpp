@@ -1,5 +1,9 @@
-# Find targets include, which should be in the same directory as this.
+# This file should be installed in the lib directory.  Find the root directory.
 get_filename_component(_dir "${CMAKE_CURRENT_LIST_FILE}" PATH)
-include("${_dir}/cudpp-targets.cmake")
+get_filename_component(_install_dir "${_dir}/.." ABSOLUTE)
 
-set(cudpp_INCLUDE_DIRS "@cudpp_INCLUDE_DIRS@")
+# Load the targets include.
+get_filename_component(_dir "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include("${_install_dir}/lib/cudpp-targets.cmake")
+
+set(cudpp_INCLUDE_DIRS "@cudpp_INCLUDE_DIRS_CONFIG@")

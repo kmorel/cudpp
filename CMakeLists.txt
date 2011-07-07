@@ -54,8 +54,20 @@ export(
   FILE ${LIBRARY_OUTPUT_PATH}/cudpp-targets.cmake
   )
 
+set(cudpp_INCLUDE_DIRS_CONFIG ${cudpp_INCLUDE_DIRS})
 configure_file(
   ${CMAKE_SOURCE_DIR}/cudpp-config.cmake.in
   ${LIBRARY_OUTPUT_PATH}/cudpp-config.cmake
   @ONLY
+  )
+
+set(cudpp_INCLUDE_DIRS_CONFIG "\${_install_dir}/include")
+configure_file(
+  ${CMAKE_SOURCE_DIR}/cudpp-config.cmake.in
+  ${LIBRARY_OUTPUT_PATH}/cudpp-config.cmake.install
+  @ONLY
+  )
+install(FILES ${LIBRARY_OUTPUT_PATH}/cudpp-config.cmake.install
+  DESTINATION lib
+  RENAME cudpp-config.cmake
   )

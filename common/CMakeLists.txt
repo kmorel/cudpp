@@ -9,3 +9,8 @@ set(CCFILES
   )
 
 cuda_add_library(cutil ${CCFILES})
+
+install(TARGETS cutil
+  DESTINATION lib
+  EXPORT cudpp-targets
+  )
