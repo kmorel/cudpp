@@ -84,3 +84,8 @@ configure_file(
 install(FILES ${LIBRARY_OUTPUT_PATH}/cudpp-config-version.cmake
   DESTINATION lib
   )
+
+set(CPACK_PACKAGE_VERSION_MAJOR ${cudpp_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${cudpp_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${cudpp_VERSION_PATCH})
+include(CPack)
